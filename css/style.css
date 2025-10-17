@@ -1,247 +1,119 @@
-/*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
+/* Importar una fuente (opcional) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 
-/* main.css 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
+:root {
+  --background-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --accent-color: #d4af37; /* Tono dorado/amarillo */
+  --secondary-text-color: #a0a0a0;
 }
 
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-  border: 0;
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
-  padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-  resize: vertical;
-}
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
-
-.hidden,
-[hidden] {
-  display: none !important;
-}
-
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
+  /* ESTA ES LA CLAVE PARA CENTRAR TODO */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   overflow: hidden;
-  padding: 0;
+}
+
+/* El contenedor principal que agrupa las dos columnas */
+.content-wrapper {
+  display: flex; /* Pone las secciones una al lado de la otra */
+  align-items: flex-start; /* Alinea ambas secciones en la parte superior */
+  gap: 80px; /* Espacio entre la columna de bienvenida y la de proyectos */
+  position: relative;
+  padding: 20px; /* Un poco de espacio interno */
+}
+
+/* Elementos decorativos de las esquinas (ajustados al nuevo contenedor) */
+.corner-top-left, .corner-bottom-right {
   position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  /* 1 */
+  width: 250px;
+  height: 250px;
+  opacity: 0.5;
+  z-index: -1; /* Para que queden detrás del texto */
 }
 
-/*
- * Extends the .visually-hidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
+.corner-top-left {
+  top: -50px;
+  left: -50px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent);
+}
 
-.visually-hidden.focusable:active,
-.visually-hidden.focusable:focus {
-  clip: auto;
-  height: auto;
+.corner-bottom-right {
+  bottom: -50px;
+  right: -50px;
+  background: linear-gradient(-45deg, rgba(255, 255, 255, 0.08), transparent);
+}
+
+/* Estilos de la sección de bienvenida */
+.welcome-section h1 {
+  font-size: 5rem;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.intro-text {
+  display: flex; /* Para poner el logo al lado del texto */
+  align-items: center;
+  gap: 15px; /* Espacio entre el logo y el párrafo */
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1rem;
+  border: 2px solid var(--secondary-text-color);
+  padding: 10px;
+  color: var(--secondary-text-color);
+  flex-shrink: 0; /* Evita que el logo se encoja */
+}
+
+.intro-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 400px;
+  color: var(--secondary-text-color);
   margin: 0;
-  overflow: visible;
-  position: static;
-  white-space: inherit;
-  width: auto;
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
 
-.invisible {
-  visibility: hidden;
+.projects-container {
+  display: flex; /* <-- ESTA ES LA LÍNEA CLAVE */
+  gap: 100px; /* Espacio entre la columna de JAVA y la de JavaScript */
 }
 
-/*
- * Clearfix: contain floats
- *
- * The use of `table` rather than `block` is only necessary if using
- * `::before` to contain the top-margins of child elements.
- */
-
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
+/* Estilo para cada categoría de proyecto individual */
+.project-category h2 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 10px;
+  display: inline-block;
+  margin-bottom: 30px;
 }
 
-.clearfix::after {
-  clear: both;
+.project-category ul {
+  list-style: none;
+  padding: 0;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+.project-category ul li {
+  margin-bottom: 15px;
 }
 
-@media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
+.project-category ul a {
+  color: var(--secondary-text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-
-@media print {
-  *,
-  *::before,
-  *::after {
-    background: #fff !important;
-    color: #000 !important;
-    /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]::after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]::after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]::after,
-  a[href^="javascript:"]::after {
-    content: "";
-  }
-
-  pre {
-    white-space: pre-wrap !important;
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
+.project-category ul a:hover {
+  color: var(--accent-color);
 }
-
