@@ -117,3 +117,32 @@ body {
 .project-category ul a:hover {
   color: var(--accent-color);
 }
+#typing-text {
+  /* ... (other styles like color, font-size, etc.) ... */
+  color: #fff;
+  font-size: 3em;
+  font-weight: bold;
+
+  /* 🔑 KEY STYLES FOR THE FOLLOWING EFFECT 🔑 */
+
+  /* 1. Ensure the cursor is always next to the text */
+  display: inline-block;
+
+  /* 2. Prevent the text from wrapping, forcing the element to grow */
+  white-space: nowrap;
+
+  /* 3. The cursor is the right border */
+  border-right: 2px solid #fff;
+
+  /* 4. Keep the hidden part hidden (not strictly necessary with inline-block, but good practice) */
+  overflow: hidden;
+
+  /* 5. The blinking animation */
+  animation:
+    blink-caret .75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #fff; }
+}
