@@ -1,23 +1,18 @@
+/**
+ * main.js
+ *
+ * This script waits for the entire HTML document to be loaded
+ * and then adds the 'loaded' class to the body element.
+ * The CSS handles the visual fade-in transition based on this class.
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Select the <body> element
+  const body = document.body;
 
-  const textToType = 'Welcome!';
-  const typingElement = document.getElementById('typing-text');
-  const typingSpeed = 400;
+  // Add the 'loaded' class to trigger the CSS transition (fade-in)
+  body.classList.add('loaded');
 
-  let charIndex = 0;
-
-  function typeText() {
-    if (charIndex < textToType.length) {
-      typingElement.textContent += textToType.charAt(charIndex);
-      charIndex++;
-      setTimeout(typeText, typingSpeed);
-    } else {
-    // 💥 NEW CODE: When typing is finished, remove the blinking animation
-    typingElement.style.animation = 'none';
-    typingElement.style.borderRight = 'none'; // Optional: remove the vertical bar completely
-  }
-  }
-
-  typeText();
+  // Console log (optional, useful for debugging)
+  console.log("Portfolio loaded and fade-in animation triggered.");
 });
-
